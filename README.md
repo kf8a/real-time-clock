@@ -1,6 +1,6 @@
 # RtcDs3231
 
-**TODO: Add description**
+Read a DS3231 real time clock module.
 
 ## Installation
 
