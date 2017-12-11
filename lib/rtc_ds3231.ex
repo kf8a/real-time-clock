@@ -1,50 +1,39 @@
 defmodule RtcDs3231 do
+  @moduledoc """
+  Use a DS3231 real time clock with a nerves system
+  """
 
-  use Bitwise
+  alias ElixirALE.I2C
 
-  def decode_seconds(byte), do: Bcd.from_bcd(byte)
-  def decode_minutes(byte), do: Bcd.from_bcd(byte)
-  def decode_date(byte), do: Bcd.from_bcd(byte)
-  def decode_year(byte), do: Bcd.from_bcd(byte)
-
-  def decode_month(byte) do
-    (byte &&& 0x1F)
-    |> Bcd.from_bcd
+  @doc """
+  Read the real time clock and return the time as a NaiveDateTime
+  """
+  def rtc_datetime(address, century \\ 2000) do
+    {:ok, pid} = I2C.start_link("i2c-1", address)
+    bytes = I2C.write_read(pid, <<0 >> , 7)
+    decode_datetime(bytes, century)
   end
 
-  def decode_hours(byte) do
-    if military_time?(byte) do
-      military_time(byte)
-    else
-      civil_time(byte)
-    end
+  @doc """
+  Set the real time clock, NOT IMPLEMENTED
+  """
+  def set_rtc_datetime(_address, _time) do
   end
 
-  def civil_time(byte) do
-    hour = (byte &&& 0x1F)
-           |> Bcd.from_bcd
-    hour + pm(byte)
+  @doc """
+  Decode the first 7 bytes returned from the DS3231 as a date.
+  https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+  """
+  def decode_datetime(bytes, century) do
+    << sec, min, hr, _dy, dt, mon, yr >> = bytes
+    seconds = Decoder.decode_seconds(sec)
+    minutes = Decoder.decode_minutes(min)
+    hour = Decoder.decode_hours(hr)
+    day = Decoder.decode_day(dt)
+    month = Decoder.decode_month(mon)
+    year = Decoder.decode_year(yr) + century
+
+    NaiveDateTime.new(year, month, day, hour, minutes, seconds)
   end
 
-  def military_time(byte) do
-    hours_byte =  byte &&& 0x3F
-    Bcd.from_bcd(hours_byte)
-  end
-
-
-  def military_time?(byte) do
-    (byte &&& (1 <<< 6)) == 0
-  end
-
-  def am?(byte) do
-    (byte &&& (1 <<< 5)) == 0
-  end
-
-  def pm(byte) do
-    if am?(byte) do
-      0
-    else
-      12
-    end
-  end
 end

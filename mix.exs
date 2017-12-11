@@ -8,6 +8,7 @@ defmodule RtcDs3231.MixProject do
       elixir: "~> 1.6-dev",
       start_permanent: Mix.env() == :prod,
       deps: deps()
+      description: "A library to read a DS3231 Real time clock module"
     ]
   end
 
@@ -21,8 +22,32 @@ defmodule RtcDs3231.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+      {:elixir_ale, "~> 1.0"},
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.11", only: :dev}
     ]
+  end
+
+  defp description do
+    """
+      A library to read a DS3231 Real time clock module
+
+    I've only tested this with a raspberry pi a+ and a sunfounder ds3231 chip.
+    """
+  end
+
+  defp package do
+    %{
+      files: [
+        "lib",
+        "mix.exs",
+        "README.md",
+        "LICENSE",
+        "Makefile"
+      ],
+      maintainers: ["Sven Bohm"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/kf8a/rtc"}
+    }
   end
 end
