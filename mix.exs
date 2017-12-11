@@ -7,8 +7,9 @@ defmodule RtcDs3231.MixProject do
       version: "0.1.0",
       elixir: "~> 1.6-dev",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
-      description: "A library to read a DS3231 Real time clock module"
+      deps: deps(),
+      description:  description(),
+      package: package()
     ]
   end
 
