@@ -36,9 +36,6 @@ defmodule RtcDs3231.MixProject do
 
     I've only tested this with a raspberry pi a+ and a sunfounder ds3231 board.
 
-    ## References
-    https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
-    https://www.sunfounder.com/ds3231-real-time-clock-module.html
     """
   end
 
