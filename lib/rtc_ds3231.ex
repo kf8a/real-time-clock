@@ -19,7 +19,7 @@ defmodule RtcDs3231 do
 
   ## Example:
 
-      RtcDs3231.rtc_datetime(<<0x68>>)
+      RtcDs3231.rtc_datetime(0x68)
 
   The chip apperas to store a 2 digit year and flip the century bit when it overflows, hence the need to
   pass in the century.
@@ -36,7 +36,7 @@ defmodule RtcDs3231 do
 
   ## Example:
 
-      RtcDs3231.set_rtc_datetime(<<0x68, ~N[2018-01-02 11:50:12])
+      RtcDs3231.set_rtc_datetime(0x68, ~N[2018-01-02 11:50:12])
 
   """
   @spec set_rtc_datetime(Byte, NaiveDateTime) :: :ok
