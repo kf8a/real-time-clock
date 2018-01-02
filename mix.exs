@@ -26,7 +26,7 @@ defmodule RtcDs3231.MixProject do
       {:elixir_ale, "~> 1.0"},
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.11", only: :dev},
-       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
     ]
   end
 
@@ -51,7 +51,7 @@ defmodule RtcDs3231.MixProject do
       ],
       maintainers: ["Sven Bohm"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/kf8a/rtc"}
+      links: %{"GitHub" => "https://github.com/kf8a/real-time-clock"}
     }
   end
 end

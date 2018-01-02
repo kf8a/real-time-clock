@@ -2,8 +2,12 @@ defmodule RtcDs3231 do
   @moduledoc """
   Use a DS3231 real time clock with a nerves system
 
-  Decode the first 7 bytes returned from the DS3231 as a date.
-  https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+  I have only tested this with a raspberry pi and the sunfounder ds3231 board
+
+  ## References
+
+  - https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+  - https://www.sunfounder.com/ds3231-real-time-clock-module.html
   """
 
   alias ElixirALE.I2C
@@ -12,7 +16,15 @@ defmodule RtcDs3231 do
 
   @doc """
   Read the real time clock and return the time as a NaiveDateTime
+
+  ## Example:
+
+      RtcDs3231.rtc_datetime(<<0x68>>)
+
+  The chip apperas to store a 2 digit year and flip the century bit when it overflows, hence the need to
+  pass in the century.
   """
+  @spec rtc_datetime(Byte, Integer) :: {:ok, NaiveDateTime}
   def rtc_datetime(address, century \\ 2000) do
     {:ok, pid} = I2C.start_link("i2c-1", address)
     bytes = I2C.write_read(pid, <<0 >> , 7)
@@ -20,8 +32,14 @@ defmodule RtcDs3231 do
   end
 
   @doc """
-  Set the real time clock, NOT IMPLEMENTED
+  Set the real time clock from a NaiveDateTime, discarding the century.
+
+  ## Example:
+
+      RtcDs3231.set_rtc_datetime(<<0x68, ~N[2018-01-02 11:50:12])
+
   """
+  @spec set_rtc_datetime(Byte, NaiveDateTime) :: :ok
   def set_rtc_datetime(address, time) do
     {:ok, pid} = I2C.start_link("i2c-1", address)
     {:ok, bytes} = Encoder.encode_datetime(time)

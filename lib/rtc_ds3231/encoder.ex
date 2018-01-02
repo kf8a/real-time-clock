@@ -13,7 +13,7 @@ defmodule RtcDs3231.Encoder do
       encode(datetime.day),
       encode(datetime.month),
       encode_year(datetime)
-    >> }
+    >>}
   end
 
   def encode_day_of_week(datetime) do
@@ -27,7 +27,7 @@ defmodule RtcDs3231.Encoder do
   Throw away the century
   """
   def encode_year(datetime) do
-    rem(datetime.year,100)
+    rem(datetime.year, 100)
     |> encode
   end
 
