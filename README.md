@@ -1,6 +1,7 @@
 # RtcDs3231
 
-Read a DS3231 real time clock module.
+Read a DS3231 real time clock module from [Nerves](http://nerves-project.org).
+Only tested on Raspberry Pi with a Sunfounder DS3231 board.
 
 ## Installation
 
