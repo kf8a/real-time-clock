@@ -4,7 +4,7 @@ defmodule RtcDs3231.MixProject do
   def project do
     [
       app: :rtc_ds3231,
-      version: "0.1.1",
+      version: "0.1.2",
       elixir: "~> 1.6-dev",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
