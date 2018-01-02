@@ -3,6 +3,18 @@ defmodule Decoder do
 
   use Bitwise
 
+  def decode_datetime(bytes, century) do
+    << sec, min, hr, _dy, dt, mon, yr >> = bytes
+    seconds = decode_seconds(sec)
+    minutes = decode_minutes(min)
+    hour = decode_hours(hr)
+    day = decode_day(dt)
+    month = decode_month(mon)
+    year = decode_year(yr) + century
+
+    NaiveDateTime.new(year, month, day, hour, minutes, seconds)
+  end
+
   def decode_seconds(byte), do: Bcd.from_bcd(byte)
   def decode_minutes(byte), do: Bcd.from_bcd(byte)
   def decode_day(byte), do: Bcd.from_bcd(byte)

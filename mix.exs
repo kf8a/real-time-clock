@@ -33,7 +33,11 @@ defmodule RtcDs3231.MixProject do
     """
       A library to read a DS3231 Real time clock module
 
-    I've only tested this with a raspberry pi a+ and a sunfounder ds3231 chip.
+    I've only tested this with a raspberry pi a+ and a sunfounder ds3231 board.
+
+    ## References
+    https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+    https://www.sunfounder.com/ds3231-real-time-clock-module.html
     """
   end
 
@@ -43,8 +47,6 @@ defmodule RtcDs3231.MixProject do
         "lib",
         "mix.exs",
         "README.md",
-        "LICENSE",
-        "Makefile"
       ],
       maintainers: ["Sven Bohm"],
       licenses: ["MIT"],
