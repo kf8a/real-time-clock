@@ -7,6 +7,8 @@ defmodule RtcDs3231 do
   """
 
   alias ElixirALE.I2C
+  alias RtcDs3231.Encoder
+  alias RtcDs3231.Decoder
 
   @doc """
   Read the real time clock and return the time as a NaiveDateTime

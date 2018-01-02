@@ -1,5 +1,7 @@
-defmodule DecoderTest do
+defmodule RtcDs3231.DecoderTest do
   use ExUnit.Case
+
+  alias RtcDs3231.Decoder
 
   test "decode 24 hour value" do
     assert Decoder.decode_hours(0b01010111) == 17

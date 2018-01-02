@@ -1,7 +1,9 @@
-defmodule Encoder do
+defmodule RtcDs3231.Encoder do
   @moduledoc false
 
   use Bitwise
+
+  alias RtcDs3231.Bcd
 
   def encode_datetime(datetime) do
     {:ok, << encode(datetime.second),

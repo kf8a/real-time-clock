@@ -1,6 +1,7 @@
-defmodule BcdTest do
+defmodule RtcDs3231.BcdTest do
   use ExUnit.Case
-  doctest Bcd
+
+  alias RtcDs3231.Bcd
 
   test "gets low nibble" do
     assert Bcd.low_nibble(82) == 2

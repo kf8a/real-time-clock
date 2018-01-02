@@ -1,5 +1,7 @@
-defmodule EncoderTest do
+defmodule RtcDs3231.EncoderTest do
   use ExUnit.Case
+
+  alias RtcDs3231.Encoder
 
   test "encode native datetime" do
     test_date = ~N[2017-12-12 01:53:23]

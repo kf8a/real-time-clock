@@ -1,4 +1,4 @@
-defmodule Bcd do
+defmodule RtcDs3231.Bcd do
   @moduledoc false
   use Bitwise
 

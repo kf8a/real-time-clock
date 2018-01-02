@@ -1,7 +1,9 @@
-defmodule Decoder do
+defmodule RtcDs3231.Decoder do
   @moduledoc false
 
   use Bitwise
+
+  alias RtcDs3231.Bcd
 
   def decode_datetime(bytes, century) do
     << sec, min, hr, _dy, dt, mon, yr >> = bytes
