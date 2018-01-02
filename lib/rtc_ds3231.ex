@@ -22,7 +22,8 @@ defmodule RtcDs3231 do
   """
   def set_rtc_datetime(address, time) do
     {:ok, pid} = I2C.start_link("i2c-1", address)
-    bytes = << 0 >> <> Encoder.encode_datetime(time)
-    I2C.write(pid, bytes)
+    {:ok, bytes} = Encoder.encode_datetime(time)
+
+    I2C.write(pid, << 0 >> <> bytes)
   end
 end
