@@ -15,7 +15,7 @@ defmodule RtcDs3231 do
   alias RtcDs3231.Decoder
 
   @doc """
-  Read the real time clock and return the time as a NaiveDateTime
+  Read the real time clock and return the time as a NaiveDateTime. 'address` is the 7 bit device address.
 
   ## Example:
 
@@ -24,7 +24,7 @@ defmodule RtcDs3231 do
   The chip apperas to store a 2 digit year and flip the century bit when it overflows, hence the need to
   pass in the century.
   """
-  @spec rtc_datetime(Byte, Integer) :: {:ok, NaiveDateTime}
+  @spec rtc_datetime(byte, integer) :: {:ok, NaiveDateTime}
   def rtc_datetime(address, century \\ 2000) do
     {:ok, pid} = I2C.start_link("i2c-1", address)
     bytes = I2C.write_read(pid, <<0 >> , 7)
@@ -39,7 +39,7 @@ defmodule RtcDs3231 do
       RtcDs3231.set_rtc_datetime(0x68, ~N[2018-01-02 11:50:12])
 
   """
-  @spec set_rtc_datetime(Byte, NaiveDateTime) :: :ok
+  @spec set_rtc_datetime(byte, naiveDateTime) :: :ok
   def set_rtc_datetime(address, time) do
     {:ok, pid} = I2C.start_link("i2c-1", address)
     {:ok, bytes} = Encoder.encode_datetime(time)
