@@ -5,7 +5,7 @@ defmodule RtcDs3231.MixProject do
     [
       app: :rtc_ds3231,
       version: "0.1.1",
-      elixir: "~> 1.6-dev",
+      elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description:  description(),
@@ -23,7 +23,7 @@ defmodule RtcDs3231.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:elixir_ale, "~> 1.0"},
+      {:circuits_i2c, "~> 0.3"},
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.11", only: :dev},
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
