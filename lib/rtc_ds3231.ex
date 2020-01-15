@@ -24,7 +24,7 @@ defmodule RtcDs3231 do
   The chip apperas to store a 2 digit year and flip the century bit when it overflows, hence the need to
   pass in the century.
   """
-  @spec rtc_datetime(byte, integer) :: {:ok, NaiveDateTime}
+  @spec rtc_datetime(byte, integer) :: {:ok, NaiveDateTime.t()} | {:error, term}
   def rtc_datetime(address, century \\ 2000) do
     {:ok, pid} = I2C.open("i2c-1")
     {:ok, bytes} = I2C.write_read(pid, address, <<0>>, 7)
@@ -39,7 +39,7 @@ defmodule RtcDs3231 do
       RtcDs3231.set_rtc_datetime(0x68, ~N[2018-01-02 11:50:12])
 
   """
-  @spec set_rtc_datetime(byte, naiveDateTime) :: :ok
+  @spec set_rtc_datetime(byte, NaiveDateTime.t()) :: :ok | {:error, term}
   def set_rtc_datetime(address, time) do
     {:ok, pid} = I2C.open("i2c-1")
     {:ok, bytes} = Encoder.encode_datetime(time)
