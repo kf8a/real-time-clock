@@ -1,12 +1,12 @@
 defmodule RtcDs3231.Decoder do
   @moduledoc false
 
-  use Bitwise
+  import Bitwise
 
   alias RtcDs3231.Bcd
 
   def decode_datetime(bytes, century) do
-    << sec, min, hr, _dy, dt, mon, yr >> = bytes
+    <<sec, min, hr, _dy, dt, mon, yr>> = bytes
     seconds = decode_seconds(sec)
     minutes = decode_minutes(min)
     hour = decode_hours(hr)
@@ -24,7 +24,7 @@ defmodule RtcDs3231.Decoder do
 
   def decode_month(byte) do
     (byte &&& 0x1F)
-    |> Bcd.from_bcd
+    |> Bcd.from_bcd()
   end
 
   def decode_hours(byte) do
@@ -36,23 +36,24 @@ defmodule RtcDs3231.Decoder do
   end
 
   def civil_time(byte) do
-    hour = (byte &&& 0x1F)
-           |> Bcd.from_bcd
+    hour =
+      (byte &&& 0x1F)
+      |> Bcd.from_bcd()
+
     hour + pm(byte)
   end
 
   def military_time(byte) do
-    hours_byte =  byte &&& 0x3F
+    hours_byte = byte &&& 0x3F
     Bcd.from_bcd(hours_byte)
   end
 
-
   def military_time?(byte) do
-    (byte &&& (1 <<< 6)) == 0
+    (byte &&& 1 <<< 6) == 0
   end
 
   def am?(byte) do
-    (byte &&& (1 <<< 5)) == 0
+    (byte &&& 1 <<< 5) == 0
   end
 
   def pm(byte) do

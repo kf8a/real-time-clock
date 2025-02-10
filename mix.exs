@@ -4,11 +4,12 @@ defmodule RtcDs3231.MixProject do
   def project do
     [
       app: :rtc_ds3231,
-      version: "0.1.1",
-      elixir: "~> 1.6",
+      version: "0.1.3",
+      elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      description:  description(),
+      docs: docs(),
+      description: description(),
       package: package()
     ]
   end
@@ -44,11 +45,21 @@ defmodule RtcDs3231.MixProject do
       files: [
         "lib",
         "mix.exs",
-        "README.md",
+        "README.md"
       ],
       maintainers: ["Sven Bohm"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/kf8a/real-time-clock"}
     }
+  end
+
+  defp docs do
+    [
+      main: "RtcDs3231",
+      extras: [
+        "README.md",
+        "LICENSE.md"
+      ]
+    ]
   end
 end
