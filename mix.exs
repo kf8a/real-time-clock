@@ -24,9 +24,10 @@ defmodule RtcDs3231.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:elixir_ale, "~> 1.0"},
-      {:ex_doc, "~> 0.31", only: :dev},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:circuits_i2c, "~> 0.3"},
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.11", only: :dev},
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
     ]
   end
 
