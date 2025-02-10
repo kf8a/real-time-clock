@@ -1,6 +1,6 @@
 defmodule RtcDs3231.Bcd do
   @moduledoc false
-  use Bitwise
+  import Bitwise
 
   @doc """
   Convert from bcd to integers
@@ -13,10 +13,10 @@ defmodule RtcDs3231.Bcd do
   def to_bcd(number) do
     high = div(number, 10)
     low = rem(number, 10)
-    (high <<< 4) ||| low
+    high <<< 4 ||| low
   end
 
-  def low_nibble(byte),  do: byte &&& 0xF
+  def low_nibble(byte), do: byte &&& 0xF
 
-  def high_nibble(byte),  do: byte >>> 4
+  def high_nibble(byte), do: byte >>> 4
 end
