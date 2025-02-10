@@ -26,7 +26,8 @@ defmodule RtcDs3231.MixProject do
     [
       {:circuits_i2c, "~> 2.0"},
       {:ex_doc, "~> 0.31", only: :dev},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -55,10 +56,7 @@ defmodule RtcDs3231.MixProject do
   defp docs do
     [
       main: "RtcDs3231",
-      extras: [
-        "README.md",
-        "LICENSE.md"
-      ]
+      extras: ["README.md"]
     ]
   end
 end
